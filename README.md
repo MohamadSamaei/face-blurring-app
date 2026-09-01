@@ -3,7 +3,7 @@
 This project detects whether an image contains a human, cat or dog.
 For humans, the model localizes the face area with a bounding box and blurs it.
 
-![Demo](assets/demo.png)
+![Demo](assets/demo.jpg)
 *Left: original image. Right: predicted face box (red) with blurred face. Ground-truth box shown in green.*
 
 ## Quick start to see the demo performance
