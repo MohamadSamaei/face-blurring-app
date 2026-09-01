@@ -213,6 +213,7 @@ The reported metrics are obtained using the pre-trained weights (v0.1.0), which 
 
 
 ## Project structure
+```text
 
 ├── main.py                 # CLI entry point (train/val/visualize)
 ├── app.py                  # Gradio frontend
@@ -236,6 +237,7 @@ The reported metrics are obtained using the pre-trained weights (v0.1.0), which 
 ├── requirements.txt
 ├── pyproject.toml
 └── README.md
+```
 
 
 ## Extending the project
