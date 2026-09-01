@@ -72,7 +72,7 @@ Then open `http://127.0.0.1:7860` in your browser and upload an image.
 ## Pre-trained weights
 Pre-trained weights are provided for **research and educational use only**.
 
-- Download: [v0.1.0 release](https://github.com/MohamadSamaei/face-blurring/releases/tag/v0.1.0)
+- Download: [v0.1.0 release](https://github.com/MohamadSamaei/face-blurring-app/releases/tag/v0.1.0)
 - These weights are trained using the CelebA dataset and are subject to its non‑commercial license.  
   **Commercial use of these weights is not permitted.**
 The provided weights were obtained with the following setting:
