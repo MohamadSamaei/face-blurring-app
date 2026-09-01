@@ -1,0 +1,22 @@
+{
+  "name": "face-blurring-annotations",
+  "title": "Face blurring dataset annotations",
+  "description": "Annotations for images containing humans, cats, and dogs, including face bounding boxes for humans.",
+  "version": "0.1.0",
+  "license": "MIT",
+  "contributors": [
+    {
+      "title": "Mohamad Samaei",
+      "email": "samaei.mohamad76@gmail.com"
+    }
+  ],
+  "resources": [
+    {
+      "name": "annotations",
+      "path": "annotations.csv",
+      "schema": "schema.json",
+      "format": "csv",
+      "mediatype": "text/csv"
+    }
+  ]
+}

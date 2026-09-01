@@ -1,0 +1,20 @@
+# Base dependencies
+-r requirements.txt
+
+# Exact pins for my environment (development & notebooks)
+ipykernel==7.3.0
+ipython==9.14.1
+ipython_pygments_lexers==1.1.1
+matplotlib==3.11.0
+matplotlib-inline==0.2.2
+notebook==7.5.7
+notebook_shim==0.2.4
+numpy==2.3.5
+pandas==3.0.3
+pillow==12.0.0
+PyYAML==6.0.3
+torch==2.9.1+cu126
+torchvision==0.24.1+cu126
+tqdm==4.68.3
+gradio==6.20.0
+albumentations==2.0.8

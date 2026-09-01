@@ -1,0 +1,8 @@
+conda activate C:\Users\samae\miniconda3\envs\gpu_env
+cd C:\Users\samae\Programming Projects\ds_face_cat_dog
+python main.py --mode train
+python main.py --mode val
+python main.py --mode visualize
+python app.py
+
+

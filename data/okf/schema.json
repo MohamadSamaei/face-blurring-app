@@ -1,0 +1,47 @@
+{
+  "fields": [
+    {
+      "name": "image_id",
+      "title": "Image ID",
+      "type": "string",
+      "description": "Image filename (e.g. '000001.jpg')."
+    },
+    {
+      "name": "x_1",
+      "title": "Bounding box x1",
+      "type": "number",
+      "description": "Top-left x coordinate of the face bounding box in pixels. For non-human images, this is zero."
+    },
+    {
+      "name": "y_1",
+      "title": "Bounding box y1",
+      "type": "number",
+      "description": "Top-left y coordinate of the face bounding box in pixels."
+    },
+    {
+      "name": "width",
+      "title": "Bounding box width",
+      "type": "number",
+      "description": "Width of the bounding box in pixels."
+    },
+    {
+      "name": "height",
+      "title": "Bounding box height",
+      "type": "number",
+      "description": "Height of the bounding box in pixels."
+    },
+    {
+      "name": "category",
+      "title": "Category",
+      "type": "integer",
+      "description": "Class label: 0 = human, 1 = cat, 2 = dog."
+    },
+    {
+      "name": "split",
+      "title": "Data split",
+      "type": "string",
+      "description": "Data split: 'train' or 'val'."
+    }
+  ],
+  "missingValues": ["", "NA", "null"]
+}

@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "face-blurring"
+version = "0.1.0"
+description = "Face localization and classification in human/animal datasets."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+  { name = "Mohamad Samaei", email = "samaei.mohamad76@gmail.com" }
+]
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=2.0",
+    "pandas>=3.0",
+    "pillow>=12.0",
+    "PyYAML>=6.0",
+    "torch>=2.9",
+    "torchvision>=0.24",
+    "tqdm>=4.68",
+    "gradio>=6.0",
+    "albumentations>=2.0"
+]
+
+[tool.setuptools]
+packages = ["src"]

@@ -1,0 +1,30 @@
+data:
+  train_csv: "data/humans_cats_dogs_train.csv"
+  val_csv: "data/humans_cats_dogs_val.csv"
+  image_folder_train: "data/image_folder_train"
+  image_folder_eval: "data/image_folder_val"
+  output_csv: "predicted_coordinates.csv"
+  output_bb_folder: "bb_predictions"
+
+training:
+  epochs: 1
+  batch_size: 16
+  momentum_general: .9
+  optimizer_general: "SGD"
+  lr_general: .005
+  classification_loss: "CrossEntropyLoss"
+  regression_loss_huber: "HuberLoss"
+  regression_loss_DIoU: "DIoU"
+  weight_loss_regression_DIOU: 1
+  delta: .12
+  num_workers: 0
+
+
+model:
+  width_target: 224
+  height_target: 224
+
+bb:
+  box_color_pred: "red"
+  box_color_gt: "green"
+  box_width: 3
