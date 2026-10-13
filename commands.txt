@@ -1,9 +1,45 @@
-conda activate C:\Users\samae\miniconda3\envs\gpu_env
-cd C:\Users\samae\Programming Projects\ds_face_cat_dog
-python main.py --mode train
-python main.py --mode val
-python main.py --mode visualize
-python app.py
+# Face blurring app commands
+# Run these commands from the repository root in PowerShell unless noted otherwise.
 
+# 1. Activate the project environment and enter the repository
+conda activate gpu_env
+Set-Location "path\to\face-blurring-app"
+python -m pip install --upgrade pip
 
+# 2A. Install the pinned development/training dependencies for CUDA 12.6
+# This index is needed to resolve the CUDA-enabled PyTorch wheels in requirements-dev.txt.
+python -m pip install -r requirements-dev.txt --extra-index-url https://download.pytorch.org/whl/cu126
+python -m pip install -e .
 
+# 2B. For CPU-only inference instead of the CUDA development environment, use:
+# python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+# python -m pip install -r requirements.txt
+
+# 3. Download backbone.pth, classification_head.pth, and regression_head.pth
+# from the v0.1.0 GitHub release and place them in the repository-root weights\ folder.
+
+# 4. Start the FastAPI service and Gradio UI (available at http://127.0.0.1:8000/)
+python -m uvicorn src.api:app --host 0.0.0.0 --port 8000
+
+# API health endpoint: GET http://127.0.0.1:8000/health
+# API image prediction: POST /predict with multipart field "file" (PNG/JPEG, max 5 MB)
+curl.exe -X POST "http://127.0.0.1:8000/predict" -F "file=@photo.jpg" --output blurred.jpg
+
+# 5. Train, validate, and visualize
+# Training requires the dataset CSVs and image folders configured in configs/default.yaml.
+python main.py --mode train --config configs/default.yaml
+python main.py --mode val --config configs/default.yaml
+python main.py --mode visualize --config configs/default.yaml
+
+# 6. Run API tests (the tests use a fake inference service and do not need model weights)
+$env:PYTHONPATH = "."
+python -m pytest tests/
+
+# The GitHub Actions workflow runs: PYTHONPATH=. pytest tests/
+
+# 7. Build and run the Docker image
+docker build -t face-blurring-app .
+docker run --rm -p 8000:8000 -v "${PWD}/weights:/app/weights:ro" face-blurring-app
+
+# Docker also requires the three model files in the mounted weights\ directory.
+# The current Dockerfile listens on port 8000.
