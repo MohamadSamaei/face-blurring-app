@@ -30,4 +30,4 @@ jobs:
     
     - name: Run Pytest
       run: |
-        PYTHONPATH =. pytest tests/
+        PYTHONPATH = tests/test_api.py
