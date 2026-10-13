@@ -21,7 +21,8 @@ dependencies = [
     "torchvision>=0.24",
     "tqdm>=4.68",
     "gradio>=6.0",
-    "albumentations>=2.0"
+    "albumentations>=2.0",
+    "fastapi>=0.139.0"
 ]
 
 [tool.setuptools]
