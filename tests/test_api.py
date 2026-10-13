@@ -1,6 +1,8 @@
 import sys
 import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 from fastapi.testclient import TestClient
 from src.api import app, ml_models
 from PIL import Image
@@ -10,28 +12,28 @@ import pytest
 
 
 # in order to avoid loading real models, a mock service is a better choice
-# class FakeInference:
-#     def prepare_image(self, image):
-#         return(image, 0, 0)
-#     def predict(self, image):
-#         return ((image, 100), "dummy_prediction")
+class FakeInference:
+    def prepare_image(self, image):
+        return(image, 0, 0)
+    def predict(self, image):
+        return ((image, 100), "dummy_prediction")
 
-# client = TestClient(app)    
+client = TestClient(app)    
 
-# def inject_fake_model():
-#     ml_models["inference"] = FakeInference()
+def inject_fake_model():
+    ml_models["inference"] = FakeInference()
 
-#     yield
+    yield
 
-#     ml_models.clear()
+    ml_models.clear()
 
-
-def mock_inference_service():
-    with patch("src.api.InferenceService") as MockClass:
-        mock_instance = MockClass.return_value
-        dummy_out_image = Image.new("RGB", (100, 100), color = "gray")
-        mock_instance.predict.return_value = dummy_out_image
-        yield mock_instance
+# @pytest.fixture(autouse = True)
+# def mock_inference_service():
+#     with patch("src.api.InferenceService") as MockClass:
+#         mock_instance = MockClass.return_value
+#         dummy_out_image = Image.new("RGB", (100, 100), color = "gray")
+#         mock_instance.predict.return_value = dummy_out_image
+#         yield mock_instance
 
 def test_health_check():
     with TestClient(app) as client:
