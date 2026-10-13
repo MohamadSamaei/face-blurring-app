@@ -1,0 +1,9 @@
+__pycache__/
+.pytest_cache/
+gpu_env/
+venv/
+env/
+.git/
+weights/
+*.pt
+*.pth
