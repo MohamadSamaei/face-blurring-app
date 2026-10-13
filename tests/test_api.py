@@ -9,6 +9,7 @@ from PIL import Image
 import io
 from unittest.mock import patch, MagicMock
 import pytest
+from contextlib import asynccontextmanager
 
 
 # in order to avoid loading real models, a mock service is a better choice
@@ -18,14 +19,13 @@ class FakeInference:
     def predict(self, image):
         return ((image, 100), "dummy_prediction")
 
-client = TestClient(app)    
-
-def inject_fake_model():
+@asynccontextmanager
+async def override_lifespan(app):
     ml_models["inference"] = FakeInference()
-
     yield
-
     ml_models.clear()
+
+app.router.lifespan_context = override_lifespan
 
 # @pytest.fixture(autouse = True)
 # def mock_inference_service():
